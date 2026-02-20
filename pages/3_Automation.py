@@ -257,7 +257,7 @@ else:
                 pdf.set_fill_color(30, 60, 114)
                 pdf.set_text_color(255, 255, 255)
                 pdf.set_font("Helvetica", "B", size=10)
-                col_widths = [65, 25, 25, 25, 30, 15]
+                col_widths = [100, 18, 18, 18, 18, 18]
                 headers = ["Country", "Mean", "Min", "Max", "Latest", "Year"]
                 for w, h in zip(col_widths, headers):
                     pdf.cell(w, 8, h, border=1, fill=True)
