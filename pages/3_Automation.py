@@ -269,8 +269,8 @@ else:
                 for i, (country, row) in enumerate(summary_df.iterrows()):
                     fill = i % 2 == 0
                     pdf.set_fill_color(240, 245, 255) if fill else pdf.set_fill_color(255, 255, 255)
-                    pdf.cell(col_widths[1], 8, str(country), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[0], 8, str(row['Mean']), border=1, fill=fill, align='C')
+                    pdf.cell(col_widths[0], 8, str(country), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[1], 8, str(row['Mean']), border=1, fill=fill, align='C')
                     pdf.cell(col_widths[3], 8, str(row["Min"]), border=1, fill=fill, align="C")
                     pdf.cell(col_widths[2], 8, str(row["Max"]), border=1, fill=fill, align="C")
                     pdf.cell(col_widths[4], 8, str(row["Latest value"]), border=1, fill=fill, align="C")
