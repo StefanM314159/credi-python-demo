@@ -297,7 +297,7 @@ else:
                 # pdf.output(buffer)
                 # buffer.seek(0)
                 # pdf_bytes = buffer.read()
-                pdf_bytes = bytes(pdf.output())
+                pdf_bytes = pdf.output().encode("latin-1")
                 
                 st.success("✅ Report generated successfully!")
                 st.download_button(
