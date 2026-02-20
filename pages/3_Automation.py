@@ -266,7 +266,7 @@ else:
                 # Table rows
                 pdf.set_text_color(0, 0, 0)
                 pdf.set_font("Helvetica", size=10)
-                for i, (country, row) in enumerate(summary_df.reset_index().itertuples()):
+                for i, row in enumerate(summary_df.reset_index().itertuples()):
                     fill = i % 2 == 0
                     pdf.set_fill_color(240, 245, 255) if fill else pdf.set_fill_color(255, 255, 255)
                     pdf.cell(col_widths[1], 8, str(row.Country), border=1, fill=fill, align="C")
