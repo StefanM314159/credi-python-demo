@@ -3,6 +3,6 @@ requests
 pandas
 plotly
 fpdf2
-fpfd
+fpdf
 kaleido
 nltk
