@@ -6,7 +6,7 @@ st.set_page_config(
     layout = "wide"
 )
 
-st.title("Pyhton Showcase")
+st.title("Python Showcase")
 st.subheader("Practical demo for Stata users")
 
 st.markdown("""
