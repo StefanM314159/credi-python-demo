@@ -9,3 +9,5 @@ nltk
 lxml
 html5lib
 beautifulsoup4
+pyarrow
+matplotlib

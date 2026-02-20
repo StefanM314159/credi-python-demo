@@ -195,20 +195,27 @@ else:
                 combined = st.session_state['batch_series']
                 indicator = st.session_state['batch_indicator']
                 year_range = st.session_state['batch_year_range']
+                
+                #Generate chart as image - matplotlib
+                import matplotlib
+                matplotlib.use("Agg")
+                import matplotlib.pyplot as plt
+                import tempfile, os
 
-                #Generate chart as image
-                fig = px.line(
-                    combined, x="Year", y="Value", color="Country",
-                    title=f"{indicator}",
-                    markers=True,
-                    width=700, height=350
-                )
-                fig.update_layout(plot_bgcolor = 'white')
-                chart_bytes = pio.to_image(fig, format="png", scale=2)
+                fig_mpl, ax = plt.subplots(figsize=(9,4))
+                for country in combined['Country'].unique():
+                    country_data = combined[combined['Country'] == country]
+                    ax.plot(country_data['Year'], country_data['Value'], markers = 'o', label = country)
+                ax.set_title(indicator)
+                ax.set_xlabel("Year")
+                ax.set_ylabel("Country")
+                ax.legend(fontsize = 8)
+                ax.grid(True, alpha = 0.3)
+                plt.tight_layout()
+
                 chart_path = os.path.join(tempfile.gettempdir(), "chart.png")
-                with open(chart_path, "wb") as f:
-                    f.write(chart_bytes)
-
+                fig_mpl.savefig(chart_path, dpi = 150, bbox_inches = "tight")
+                plt.close(fig_mpl)
 
                 # Build PDF
                 pdf = FPDF()
