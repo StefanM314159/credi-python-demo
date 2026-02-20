@@ -291,7 +291,7 @@ else:
                 pdf.cell(0, 10, f"{report_author} - {report_title} - {datetime.now().strftime('%Y')}", align="C")
 
                 # ── Output to bytes ──────────────────────────────────────────
-                pdf_bytes = bytes(pdf.output())
+                pdf_bytes = pdf.output()
                 
                 st.success("✅ Report generated successfully!")
                 st.download_button(
