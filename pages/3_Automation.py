@@ -319,7 +319,7 @@ else:
 
     if st.session_state.get('pdf_bytes'):
         st.download_button(
-            label="Download Reprt",
+            label="Download PDF Report",
             data=st.session_state['pdf_bytes'],
             file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
             type="primary",
