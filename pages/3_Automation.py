@@ -292,11 +292,12 @@ else:
 
                 # ── Output to bytes ──────────────────────────────────────────
                 # pdf_bytes = pdf.output()
-                import io
-                buffer = io.BytesIO()
-                pdf.output(buffer)
-                buffer.seek(0)
-                pdf_bytes = buffer.read()
+                # import io
+                # buffer = io.BytesIO()
+                # pdf.output(buffer)
+                # buffer.seek(0)
+                # pdf_bytes = buffer.read()
+                pdf_bytes = bytes(pdf.output())
                 
                 st.success("✅ Report generated successfully!")
                 st.download_button(
