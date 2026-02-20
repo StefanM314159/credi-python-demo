@@ -266,15 +266,15 @@ else:
                 # Table rows
                 pdf.set_text_color(0, 0, 0)
                 pdf.set_font("Helvetica", size=10)
-                for i, (country, row) in enumerate(summary_df.iterrows()):
+                for i, (country, row) in enumerate(summary_df.reset_index().itertuples()):
                     fill = i % 2 == 0
                     pdf.set_fill_color(240, 245, 255) if fill else pdf.set_fill_color(255, 255, 255)
-                    pdf.cell(col_widths[1], 8, str(row["Mean"]), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[0], 8, country, border=1, fill=fill)
-                    pdf.cell(col_widths[3], 8, str(row["Max"]), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[2], 8, str(row["Min"]), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[4], 8, str(row["Latest value"]), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[5], 8, str(row["Latest year"]), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[1], 8, str(row.Country), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[0], 8, str(row.Mean), border=1, fill=fill)
+                    pdf.cell(col_widths[3], 8, str(row.Min), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[2], 8, str(row.Max), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[4], 8, str(getattr(row, "Latest value")), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[5], 8, str(getattr(row, "Latest year")), border=1, fill=fill, align="C")
 
                     pdf.ln()
                 pdf.ln(8)
@@ -291,25 +291,13 @@ else:
                 pdf.cell(0, 10, f"{report_author} - {report_title} - {datetime.now().strftime('%Y')}", align="C")
 
                 # ── Output to bytes ──────────────────────────────────────────
-                # pdf_bytes = pdf.output()
-                # import io
-                # buffer = io.BytesIO()
-                # pdf.output(buffer)
-                # buffer.seek(0)
-                # pdf_bytes = buffer.read()
+               
                 pdf_path = os.path.join(tempfile.gettempdir(), 'report.pdf')
                 pdf.output(pdf_path)
                 with open(pdf_path, 'rb') as f:
                     st.session_state['pdf_bytes'] = f.read()
                 st.success("Report Generated Successfully")
 
-                # st.download_button(
-                #     label="⬇️ Download PDF Report",
-                #     data=pdf_bytes,
-                #     mime="application/pdf",
-                #     file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
-                #     type="primary"
-                # )
             except ImportError:
                 st.error("fpdf not installed")
             except Exception as e:
