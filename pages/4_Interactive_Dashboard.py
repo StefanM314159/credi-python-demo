@@ -28,7 +28,7 @@ with col1:
 with col2:
     st.header("Why this is better than STATA for reports?")
     st.markdown("""
-    **Interactive vs Static**: Instead of generating PDF repors, you can host a dashboard similar to this one.
+    **Interactive vs Static**: Instead of generating PDF reports, you can host a dashboard similar to this one.
     """)
 
 st.divider()
