@@ -297,22 +297,31 @@ else:
                 # pdf.output(buffer)
                 # buffer.seek(0)
                 # pdf_bytes = buffer.read()
-                pdf_bytes = bytes(pdf.output().encode("latin-1"))
-                
+                st.session_state['pdf_bytes'] = pdf.output().encode("latin-1")
                 st.success("✅ Report generated successfully!")
-                st.download_button(
-                    label="⬇️ Download PDF Report",
-                    data=pdf_bytes,
-                    mime="application/pdf",
-                    file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
-                    type="primary"
-                )
+
+                # st.download_button(
+                #     label="⬇️ Download PDF Report",
+                #     data=pdf_bytes,
+                #     mime="application/pdf",
+                #     file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
+                #     type="primary"
+                # )
             except ImportError:
                 st.error("fpdf not installed")
             except Exception as e:
                 import traceback
                 st.error(f"Report failed: {e}")
                 st.code(traceback.format_exc())
+
+    if st.session_state.get('pdf_bytes'):
+        st.download_button(
+            label="Download Reprt",
+            data=st.session_state['pdf_bytes'],
+            file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
+            type="primary",
+            key="pdf_download"
+        )
 
 st.divider()
 st.markdown("""
