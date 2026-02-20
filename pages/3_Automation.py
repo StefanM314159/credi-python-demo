@@ -297,8 +297,11 @@ else:
                 # pdf.output(buffer)
                 # buffer.seek(0)
                 # pdf_bytes = buffer.read()
-                st.session_state['pdf_bytes'] = pdf.output().encode("latin-1")
-                st.success("✅ Report generated successfully!")
+                pdf_path = os.path.join(tempfile.gettempdir(), 'report.pdf')
+                pdf.output(pdf_path)
+                with open(pdf_path, 'rb') as f:
+                    st.session_state['pdf_bytes'] = f.read()
+                st.success("Report Generated Successfully")
 
                 # st.download_button(
                 #     label="⬇️ Download PDF Report",
@@ -320,7 +323,8 @@ else:
             data=st.session_state['pdf_bytes'],
             file_name=f"western_balkans_report_{datetime.now().strftime('%Y%m%d')}.pdf",
             type="primary",
-            key="pdf_download"
+            key="pdf_download",
+            mime="application/pdf"
         )
 
 st.divider()
