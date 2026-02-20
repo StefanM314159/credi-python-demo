@@ -205,7 +205,7 @@ else:
                 fig_mpl, ax = plt.subplots(figsize=(9,4))
                 for country in combined['Country'].unique():
                     country_data = combined[combined['Country'] == country]
-                    ax.plot(country_data['Year'], country_data['Value'], markers = 'o', label = country)
+                    ax.plot(country_data['Year'], country_data['Value'], marker = 'o', label = country)
                 ax.set_title(indicator)
                 ax.set_xlabel("Year")
                 ax.set_ylabel("Country")
