@@ -266,15 +266,15 @@ else:
                 # Table rows
                 pdf.set_text_color(0, 0, 0)
                 pdf.set_font("Helvetica", size=10)
-                for i, row in enumerate(summary_df.reset_index().itertuples()):
+                for i, (country, row) in enumerate(summary_df.iterrows()):
                     fill = i % 2 == 0
                     pdf.set_fill_color(240, 245, 255) if fill else pdf.set_fill_color(255, 255, 255)
-                    pdf.cell(col_widths[1], 8, str(row.Country), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[0], 8, str(row.Mean), border=1, fill=fill)
-                    pdf.cell(col_widths[3], 8, str(row.Min), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[2], 8, str(row.Max), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[4], 8, str(getattr(row, "Latest value")), border=1, fill=fill, align="C")
-                    pdf.cell(col_widths[5], 8, str(getattr(row, "Latest year")), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[1], 8, str(country), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[0], 8, str(row['Mean']), border=1, fill=fill)
+                    pdf.cell(col_widths[3], 8, str(row["Min"]), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[2], 8, str(row["Max"]), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[4], 8, str(row["Latest value"]), border=1, fill=fill, align="C")
+                    pdf.cell(col_widths[5], 8, str(row["Latest year"]), border=1, fill=fill, align="C")
 
                     pdf.ln()
                 pdf.ln(8)
@@ -291,7 +291,6 @@ else:
                 pdf.cell(0, 10, f"{report_author} - {report_title} - {datetime.now().strftime('%Y')}", align="C")
 
                 # ── Output to bytes ──────────────────────────────────────────
-               
                 pdf_path = os.path.join(tempfile.gettempdir(), 'report.pdf')
                 pdf.output(pdf_path)
                 with open(pdf_path, 'rb') as f:
