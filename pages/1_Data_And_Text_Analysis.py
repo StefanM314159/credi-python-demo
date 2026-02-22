@@ -504,10 +504,10 @@ st.markdown("---")
 #Step 5: Sentiment Analysis
 st.markdown("#### Step 5 - Sentiment Analysis")
 st.markdown("""
-By using the steps above we performed a **frequency analysis** allowing us to estimate which the most mentioned topics. 
+By using the steps above we performed a **frequency analysis** allowing us to estimate which are the most mentioned topics. 
 However, the same 15 headlines we've been analysing can  be passed through a completely 
 different type of analysis — **sentiment scoring**. 
-Instead of counting words, we can assess wheter the headline is positive, negative, or neutral?
+Instead of counting words, we can assess wheter the headline is positive, negative, or neutral!
 
             
 
