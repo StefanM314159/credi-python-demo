@@ -242,7 +242,7 @@ url = "https://api.frankfurter.app/latest?from=USD&to=EUR&amount=1000"
 response = requests.get(url)
 data = response.json()
         
-converted = data['rates']['EUR]
+converted = data['rates']['EUR']
 """, language='python')
 
 currencies = {
