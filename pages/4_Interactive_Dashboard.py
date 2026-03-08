@@ -34,7 +34,7 @@ with col2:
 st.divider()
 st.header("Honorable Mentions")
 
-tab1, tab2, tab3 = st.tabs(["Machine Learning", "High-Performance Data", "Advanced Econometrics"])
+tab1, tab2, tab3 = st.tabs(["Machine Learning", "High-Performance Data", "Modern Econometrics"])
 with tab1:
     st.markdown("### Machine Learning & Predictions")
     st.markdown("""

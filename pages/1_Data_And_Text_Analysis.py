@@ -31,7 +31,7 @@ if has_api == "Yes - Use the API":
     
     ```python
     import requests
-    url = "https://api.worldbank.org/v2/country/US/indicator/NY.GDP.MKTP.CD?format=json&per_page=20"
+    url = "https://api.worldbank.org/v2/country/BA/indicator/NY.GDP.MKTP.CD?format=json&per_page=20"
     response = requests.get(url)
     data = response.json()
     ```
